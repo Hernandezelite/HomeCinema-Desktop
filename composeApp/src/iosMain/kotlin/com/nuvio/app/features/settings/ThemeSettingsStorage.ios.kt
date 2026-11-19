@@ -119,7 +119,7 @@ actual object ThemeSettingsStorage {
         val normalizedCode = languageCode
             .trim()
             .takeIf { it.isNotBlank() }
-            ?: AppLanguage.ENGLISH.code
+            ?: AppLanguage.SPANISH.code
         NSUserDefaults.standardUserDefaults.setObject(
             listOf(normalizedCode),
             forKey = "AppleLanguages",
@@ -156,6 +156,6 @@ actual object ThemeSettingsStorage {
         payload.decodeSyncBoolean(liquidGlassNativeTabBarEnabledKey)?.let(::saveLiquidGlassNativeTabBarEnabled)
         payload.decodeSyncString(desktopNavigationLayoutKey)?.let(::saveDesktopNavigationLayout)
         payload.decodeSyncString(navBarStyleKey)?.let(::saveNavBarStyle)
-        applySelectedAppLanguage(loadSelectedAppLanguage() ?: AppLanguage.DEVICE.code)
+        applySelectedAppLanguage(loadSelectedAppLanguage() ?: AppLanguage.SPANISH.code)
     }
 }

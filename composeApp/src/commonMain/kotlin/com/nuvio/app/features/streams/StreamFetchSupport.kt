@@ -1,6 +1,7 @@
 package com.nuvio.app.features.streams
 
 import com.nuvio.app.features.addons.AddonManifest
+import com.nuvio.app.features.player.SpanishLanguagePriority
 import com.nuvio.app.features.addons.ManagedAddon
 import com.nuvio.app.features.plugins.PluginRepositoryItem
 import com.nuvio.app.features.plugins.PluginRuntimeResult
@@ -137,10 +138,23 @@ internal fun PluginRuntimeResult.toStreamItem(
 
 internal fun List<StreamItem>.sortedForGroupedDisplay(): List<StreamItem> =
     sortedWith(
-        compareBy<StreamItem>(
-            { it.sourceName.orEmpty().lowercase() },
-            { it.streamLabel.lowercase() },
-            { it.streamSubtitle.orEmpty().lowercase() },
+        compareByDescending<StreamItem> { stream ->
+            if (SpanishLanguagePriority.isSpanishAny(
+                    stream.description,
+                    stream.name,
+                    stream.sourceName,
+                )
+            ) {
+                1
+            } else {
+                0
+            }
+        }.then(
+            compareBy<StreamItem>(
+                { it.sourceName.orEmpty().lowercase() },
+                { it.streamLabel.lowercase() },
+                { it.streamSubtitle.orEmpty().lowercase() },
+            ),
         ),
     )
 

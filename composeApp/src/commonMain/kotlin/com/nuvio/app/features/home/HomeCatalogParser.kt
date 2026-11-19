@@ -1,5 +1,6 @@
 package com.nuvio.app.features.home
 
+import com.nuvio.app.features.player.SpanishLanguagePriority
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonArray
 import kotlinx.serialization.json.JsonObject
@@ -32,7 +33,6 @@ internal object HomeCatalogParser {
         val parsedItems = buildList {
             val seenKeys = mutableSetOf<String>()
             for (element in metas) {
-                if (maxItems != null && size >= maxItems) break
 
                 val meta = element as? JsonObject ?: continue
                 val id = meta.string("id")
@@ -62,14 +62,18 @@ internal object HomeCatalogParser {
                     landscapePoster = landscapePoster,
                     runtime = meta.string("runtime")?.trim()?.takeIf { it.isNotBlank() },
                     status = meta.string("status")?.trim()?.takeIf { it.isNotBlank() },
+                    language = meta.string("language")
+                        ?: meta.string("lang")
+                        ?: meta.string("contentLanguage"),
                 )
                 if (seenKeys.add(item.stableKey())) {
                     add(item)
                 }
             }
         }
+        val prioritized = SpanishLanguagePriority.prioritize(parsedItems) { it.language }
         return ParsedCatalogResponse(
-            items = parsedItems,
+            items = if (maxItems == null) prioritized else prioritized.take(maxItems),
             rawItemCount = metas.size,
         )
     }

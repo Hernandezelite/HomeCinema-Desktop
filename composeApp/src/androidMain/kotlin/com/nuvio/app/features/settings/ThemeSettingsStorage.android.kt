@@ -37,7 +37,7 @@ actual object ThemeSettingsStorage {
 
     fun initialize(context: Context) {
         preferences = context.getSharedPreferences(preferencesName, Context.MODE_PRIVATE)
-        applySelectedAppLanguage(loadSelectedAppLanguage() ?: AppLanguage.DEVICE.code)
+        applySelectedAppLanguage(loadSelectedAppLanguage() ?: AppLanguage.SPANISH.code)
     }
 
     actual fun loadSelectedTheme(): String? =
@@ -166,6 +166,6 @@ actual object ThemeSettingsStorage {
         payload.decodeSyncBoolean(liquidGlassNativeTabBarEnabledKey)?.let(::saveLiquidGlassNativeTabBarEnabled)
         payload.decodeSyncString(desktopNavigationLayoutKey)?.let(::saveDesktopNavigationLayout)
         payload.decodeSyncString(NAV_BAR_STYLE_KEY)?.let(::saveNavBarStyle)
-        applySelectedAppLanguage(loadSelectedAppLanguage() ?: AppLanguage.DEVICE.code)
+        applySelectedAppLanguage(loadSelectedAppLanguage() ?: AppLanguage.SPANISH.code)
     }
 }

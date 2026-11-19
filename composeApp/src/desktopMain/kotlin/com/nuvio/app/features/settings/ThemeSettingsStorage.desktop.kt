@@ -121,6 +121,6 @@ internal actual object ThemeSettingsStorage {
         payload.decodeSyncString(desktopNavigationLayoutKey)?.let(::saveDesktopNavigationLayout)
         payload.decodeSyncString(navBarStyleKey)?.let(::saveNavBarStyle)
         payload.decodeSyncBoolean(navBarGlowEnabledKey)?.let(::saveNavBarGlowEnabled)
-        applySelectedAppLanguage(loadSelectedAppLanguage() ?: AppLanguage.ENGLISH.code)
+        applySelectedAppLanguage(loadSelectedAppLanguage() ?: AppLanguage.SPANISH.code)
     }
 }

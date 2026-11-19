@@ -6,6 +6,7 @@ import com.nuvio.app.features.addons.encodeUnsafeHttpUrlCharacters
 import com.nuvio.app.features.addons.httpGetText
 import com.nuvio.app.features.profiles.ProfileRepository
 import com.nuvio.app.features.tmdb.TmdbService
+import com.nuvio.app.features.player.SpanishLanguagePriority
 import com.nuvio.app.features.plugins.runtime.PluginRuntime
 import io.github.jan.supabase.postgrest.postgrest
 import io.github.jan.supabase.postgrest.query.Order
@@ -326,9 +327,11 @@ actual object PluginRepository {
     actual fun getEnabledScrapersForType(type: String): List<PluginScraper> {
         initialize()
         if (!_uiState.value.pluginsEnabled) return emptyList()
-        return _uiState.value.scrapers.filter { scraper ->
-            scraper.enabled && scraper.supportsType(type)
-        }
+        return SpanishLanguagePriority.prioritize(
+            _uiState.value.scrapers.filter { scraper ->
+                scraper.enabled && scraper.supportsType(type)
+            },
+        ) { scraper -> scraper.contentLanguage.joinToString(" ") }
     }
 
     actual suspend fun testScraper(scraperId: String): Result<List<PluginRuntimeResult>> {

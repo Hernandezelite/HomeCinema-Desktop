@@ -12,8 +12,8 @@ actual object AppUpdaterPlatform {
     actual val hasSingleUpdateChannel: Boolean = false
 
     actual val releaseSource: AppUpdateReleaseSource = AppUpdateReleaseSource(
-        owner = "NuvioMedia",
-        repo = "NuvioMobile",
+        owner = "Hernandezelite",
+        repo = "HomeCinema-Desktop",
         channelBranch = "cmp-rewrite",
         userAgent = "NuvioMobile",
     )

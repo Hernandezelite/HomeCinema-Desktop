@@ -107,6 +107,15 @@ object SubtitleLanguageOption {
     const val FORCED = "forced"
 }
 
+/**
+ * Fork Nuvio EspaÃ±ol: idiomas usados cuando no hay una preferencia guardada.
+ * El usuario puede cambiarlos desde Ajustes en cualquier momento.
+ */
+object PreferredLanguageDefaults {
+    const val AUDIO = "es"
+    const val SUBTITLE = "es"
+}
+
 val AvailableLanguageOptions: List<LanguagePreferenceOption> = listOf(
     LanguagePreferenceOption("af", Res.string.lang_afrikaans),
     LanguagePreferenceOption("sq", Res.string.lang_albanian),

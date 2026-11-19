@@ -1,3 +1,5 @@
+> ðŸ§© HomeCinema: fork enfocado en espaÃ±ol. Consulta [SPANISH_FORK.md](SPANISH_FORK.md).
+
 <div align="center">
 
   <img src="https://nuvio.tv/assets/nuvio-app-logo-wordmark.webp" alt="Nuvio" width="320" />
