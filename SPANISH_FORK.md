@@ -1,4 +1,4 @@
-# HomeCinema (HomeCinema-Desktop)
+# HomeCinema Desktop (fork de Nuvio)
 
 Fork de Nuvio enfocado en español para Windows, Android y escritorio. Mantiene
 **compatibilidad total con los addons y plugins de la comunidad**: no se ha
@@ -32,6 +32,11 @@ sigue disponible y se puede cambiar el idioma cuando quieras.
 
 El `applicationId` (`com.nuvio.app`) se mantiene igual a propósito para no romper
 addons ni contratos de la comunidad.
+
+El nombre interno de Gradle (`rootProject.name = "Nuvio"`) y el paquete de
+recursos Compose (`nuvio.composeapp.generated.resources`) también se conservan:
+son identificadores de compilación, no el nombre visible de la app. Cambiarlos
+rompería los imports de recursos de todo el proyecto.
 
 ## Compilación
 
