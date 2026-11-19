@@ -108,7 +108,7 @@ object SubtitleLanguageOption {
 }
 
 /**
- * Fork Nuvio EspaÃ±ol: idiomas usados cuando no hay una preferencia guardada.
+ * Fork Nuvio Español: idiomas usados cuando no hay una preferencia guardada.
  * El usuario puede cambiarlos desde Ajustes en cualquier momento.
  */
 object PreferredLanguageDefaults {

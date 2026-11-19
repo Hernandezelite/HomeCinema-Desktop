@@ -1,13 +1,13 @@
 package com.nuvio.app.features.player
 
 /**
- * Fork Nuvio EspaÃ±ol: da prioridad al contenido en espaÃ±ol sin filtrar el resto.
+ * Fork Nuvio Español: da prioridad al contenido en español sin filtrar el resto.
  *
  * No toca los contratos de addons ni de plugins de la comunidad: solo reordena
- * resultados (catÃ¡logos, streams y scrapers) de forma estable.
+ * resultados (catálogos, streams y scrapers) de forma estable.
  */
 object SpanishLanguagePriority {
-    private val spanishWords = listOf("spanish", "espanol", "espaÃ±ol", "castellano")
+    private val spanishWords = listOf("spanish", "espanol", "español", "castellano")
 
     fun isSpanish(value: String?): Boolean {
         if (value.isNullOrBlank()) return false
@@ -27,7 +27,7 @@ object SpanishLanguagePriority {
 
     fun isSpanishAny(vararg values: String?): Boolean = values.any(::isSpanish)
 
-    /** Orden estable: los elementos en espaÃ±ol primero, el resto conserva su orden. */
+    /** Orden estable: los elementos en español primero, el resto conserva su orden. */
     fun <T> prioritize(items: List<T>, languageOf: (T) -> String?): List<T> =
         items.sortedWith(compareByDescending<T> { item ->
             if (isSpanish(languageOf(item))) 1 else 0
