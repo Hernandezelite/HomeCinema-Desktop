@@ -1,51 +1,58 @@
 # HomeCinema (HomeCinema-Desktop)
 
-Fork de Nuvio enfocado en espaÃ±ol. Mantiene **compatibilidad total con los addons y
-plugins de la comunidad** (no se ha cambiado ningÃºn manifest, contrato ni formato
-de datos) y prioriza el espaÃ±ol.
+Fork de Nuvio enfocado en español para Windows, Android y escritorio. Mantiene
+**compatibilidad total con los addons y plugins de la comunidad**: no se ha
+cambiado ningún manifest, contrato ni formato de datos. El español es una
+preferencia por defecto y un orden estable, nunca un filtro. Todo el contenido
+sigue disponible y se puede cambiar el idioma cuando quieras.
 
 ## Cambios aplicados
 
-| Ãmbito | Comportamiento por defecto |
+| Ámbito | Comportamiento por defecto |
 | --- | --- |
-| Nombre e icono | HomeCinema, con icono de una H sobre una cinta de vÃ­deo (Android, Windows y GitHub). |
-| Interfaz | EspaÃ±ol (alues-es) como idioma inicial y como fallback. Se puede cambiar en Ajustes â†’ Apariencia â†’ Idioma. |
-| Audio | EspaÃ±ol (es) como idioma preferido. Se puede cambiar en Ajustes â†’ ReproducciÃ³n. |
-| SubtÃ­tulos | EspaÃ±ol (es) como idioma preferido. Se puede cambiar en Ajustes â†’ ReproducciÃ³n. |
-| CatÃ¡logos / bÃºsqueda | Los resultados con idioma espaÃ±ol aparecen primero (orden estable, nada se filtra). |
-| Streams de addons/plugins | Los streams en espaÃ±ol aparecen primero dentro de cada grupo. |
-| Scrapers de plugins | Los scrapers que declaran contentLanguage en espaÃ±ol se prueban primero. |
-| Actualizador | Apunta a Hernandezelite/HomeCinema-Desktop para que no te instale la versiÃ³n original. |
+| Nombre e icono | HomeCinema, con una H sobre una cinta de vídeo en Android, Windows y GitHub. |
+| Interfaz | Español (`values-es`) como idioma inicial y como fallback. Se cambia en Ajustes → Apariencia → Idioma. |
+| Audio | Español (`es`) como idioma preferido. Se cambia en Ajustes → Reproducción. |
+| Subtítulos | Español (`es`) como idioma preferido. Se cambia en Ajustes → Reproducción. |
+| Catálogos / búsqueda | Los resultados en español aparecen primero, sin eliminar los demás. |
+| Streams de addons/plugins | Los streams en español aparecen primero dentro de cada grupo. |
+| Scrapers de plugins | Los scrapers que declaran `contentLanguage` en español se prueban primero. |
+| Actualizador | Apunta a `Hernandezelite/HomeCinema-Desktop` para no instalar la versión original. |
 
-Archivos nuevos o modificados principales:
+## Archivos principales
 
-- eatures/player/SpanishLanguagePriority.kt (nuevo): lÃ³gica de prioridad, sin tocar APIs de addons.
-- eatures/player/PlayerLanguagePreferences.kt y PlayerSettingsRepository.kt: idiomas preferidos.
-- eatures/settings/AppLanguage.kt, ThemeSettingsRepository.kt, ThemeSettingsStorage.*.kt: idioma de UI.
-- eatures/home/HomeCatalogParser.kt: prioridad en resultados de catÃ¡logo/bÃºsqueda.
-- eatures/streams/StreamFetchSupport.kt: prioridad en streams.
-- ullCommonMain/.../PluginRepository.kt: prioridad en scrapers.
-- eatures/updater/*: repositorio de actualizaciones del fork.
+- `features/player/SpanishLanguagePriority.kt`: lógica de prioridad estable, sin tocar APIs de addons.
+- `features/player/PlayerLanguagePreferences.kt` y `PlayerSettingsRepository.kt`: idiomas preferidos.
+- `features/settings/AppLanguage.kt`, `ThemeSettingsRepository.kt`, `ThemeSettingsStorage.*.kt`: idioma de UI.
+- `features/home/HomeCatalogParser.kt`: prioridad en catálogos y búsqueda.
+- `features/streams/StreamFetchSupport.kt`: prioridad en streams.
+- `fullCommonMain/.../PluginRepository.kt`: prioridad en scrapers.
+- `features/updater/*`: repositorio de actualizaciones del fork.
+- `composeApp/build.gradle.kts`: nombre de paquete, proveedor y grupo de menú de Windows.
 
-## Antes de distribuir
+El `applicationId` (`com.nuvio.app`) se mantiene igual a propósito para no romper
+addons ni contratos de la comunidad.
 
-1. Cambia el pplicationId (ndroidApp/build.gradle.kts) si quieres que conviva con la app oficial.
-2. Firma los builds con tu propia clave.
-3. Publica los releases en https://github.com/Hernandezelite/HomeCinema-Desktop/releases.
+## Compilación
 
-## CompilaciÃ³n
+Requiere JDK 17+ y Android SDK para los destinos Android.
 
-`ash
+```bash
 # Android (APK)
-./gradlew :androidApp:assembleDebug
+./gradlew :androidApp:assembleDebug -Pnuvio.android.distribution=full
 
-# Windows (MSI)
-./gradlew packageMsix
-`
+# Distribución de escritorio para el sistema actual
+./gradlew :composeApp:createDistributable
+```
 
-Requiere JDK 17+ y Android SDK. El mÃ³dulo composeApp es comÃºn a todas las plataformas.
+En Windows PowerShell:
 
-## Repositorio
+```powershell
+.\gradlew.bat :composeApp:createDistributable
+.\gradlew.bat :composeApp:packageReleaseMsi --rerun-tasks
+```
 
-- MÃ³vil: https://github.com/Hernandezelite/HomeCinema
+## Repositorios
+
+- Móvil: https://github.com/Hernandezelite/HomeCinema
 - Escritorio / Android / Windows: https://github.com/Hernandezelite/HomeCinema-Desktop

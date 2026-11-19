@@ -1,82 +1,66 @@
-> ðŸ§© HomeCinema: fork enfocado en espaÃ±ol. Consulta [SPANISH_FORK.md](SPANISH_FORK.md).
+> 🧩 HomeCinema: fork enfocado en español. Consulta [SPANISH_FORK.md](SPANISH_FORK.md).
 
 <div align="center">
 
-  <img src="https://nuvio.tv/assets/nuvio-app-logo-wordmark.webp" alt="Nuvio" width="320" />
+  <img src="homecinema-icon.png" alt="HomeCinema" width="320" />
 
   <p>
-    A free, open-source media app for Windows, macOS, and Linux.
-    <br />
-    Bring your own sources. Nuvio turns them into a library with artwork, ratings, subtitles, and your place saved on every screen.
+    Una app de cine en casa libre y de código abierto para Windows, Android
+    y escritorio. Español por defecto, sin filtrar contenido.
   </p>
 
-  [Website](https://nuvio.tv) · [GitHub releases](https://github.com/NuvioMedia/NuvioDesktop/releases/latest) · [Support Nuvio](https://nuvio.tv/support)
+  [Sitio web](https://nuvio.tv) · [Releases](https://github.com/Hernandezelite/HomeCinema-Desktop/releases/latest) · [Apoyar](https://nuvio.tv/support)
 
 </div>
 
-## ⚠️ Alpha Software - Slow Development - Testers Only
+## ⚠️ Software alfa
 
-Nuvio Desktop is currently in alpha and is intended only for testers. It is under development and is not suitable for daily use.
+Esta rama sigue en fase alfa y está pensada para pruebas. Puede haber cambios
+rupturistas en cada versión; no la uses como app principal todavía.
 
-Expect breaking changes with every update. Features, settings, stored data, and compatibility may change or stop working without notice. Do not rely on this build as your primary media app, and report any issues you encounter during testing.
+## Descargar HomeCinema Desktop
 
-## Get Nuvio Desktop
+Descarga la última compilación desde [GitHub Releases](https://github.com/Hernandezelite/HomeCinema-Desktop/releases/latest).
 
-Download the latest build from [GitHub Releases](https://github.com/NuvioMedia/NuvioDesktop/releases/latest).
+- Windows: instalador MSI
+- Android: APK
+- macOS / Linux: consulta los releases del proyecto original si necesitas esos destinos
 
-- Windows: MSI installer
-- macOS: DMG installer
-- Linux: DEB, RPM, Flatpak, or AppImage
-
-## Build from source
+## Compilar desde el código
 
 ```bash
-git clone https://github.com/NuvioMedia/NuvioDesktop.git
-cd NuvioDesktop
+git clone https://github.com/Hernandezelite/HomeCinema-Desktop.git
+cd HomeCinema-Desktop
 ```
 
-### Run the app
+### Ejecutar la app
 
 ```bash
 ./gradlew :composeApp:run
 ```
 
-On Windows PowerShell:
+En Windows PowerShell:
 
 ```powershell
 .\gradlew.bat :composeApp:run
 ```
 
-### Package the app
+### Empaquetar la app
 
-Build a release package for the current host:
+Paquete de escritorio para el sistema actual:
 
 ```bash
-./gradlew :composeApp:packageReleaseDistributionForCurrentOS
+./gradlew :composeApp:createDistributable
 ```
 
-For platform-specific packaging:
-
-Windows PowerShell:
+En Windows también puedes generar el MSI:
 
 ```powershell
 .\gradlew.bat :composeApp:packageReleaseMsi --rerun-tasks
 ```
 
-macOS:
+La app compartida está construida con Kotlin Multiplatform y Compose Multiplatform.
 
-```bash
-./scripts/build-macos-release-dmgs.sh --package-only
-```
-
-Linux:
-
-```bash
-./gradlew :composeApp:packageReleaseDeb
-```
-
-The shared app is built with Kotlin Multiplatform and Compose Multiplatform.
-
-## License
+## Licencia
 
 [GNU General Public License v3.0](./LICENSE)
