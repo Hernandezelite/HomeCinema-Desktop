@@ -88,6 +88,7 @@ import nuvio.composeapp.generated.resources.settings_playback_option_original
 import nuvio.composeapp.generated.resources.subtitle_language_unknown
 import org.jetbrains.compose.resources.StringResource
 import org.jetbrains.compose.resources.getString
+import org.jetbrains.compose.resources.stringResource
 
 data class LanguagePreferenceOption(
     val code: String,
